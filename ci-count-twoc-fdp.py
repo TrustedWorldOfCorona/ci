@@ -19,7 +19,7 @@ for entry in requests.get(ENTRIES_ENDPOINT).json():
         print("Resolved client url")
         numEntries += 1
     except:
-        sys.exit(1)
+        continue
 
 print(f"Found {numEntries} entries")
 
