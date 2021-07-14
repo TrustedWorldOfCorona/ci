@@ -1,0 +1,23 @@
+on:
+  schedule:
+    - cron: 0 */8 * * *
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: TrustedWorldOfCorona/twoc-data-visiting-prototype
+          path: twoc-data-visiting-prototype
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - uses: py-actions/py-dependency-install@v2
+      - run: 'python ci-query-aggregate-fdp.py'
